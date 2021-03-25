@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import Dashboard from './Dashboard'
-
 import {BrowserRouter,Route, Redirect } from 'react-router-dom'
 
 class LoginPage extends React.Component {
@@ -24,16 +23,14 @@ class LoginPage extends React.Component {
             let users = response.data
             let emails = users.map(user => {
                 return user.email
-            } )
+            })
             this.setState({users, emails})
         })
-
     }
 
     handleEmail = (e) => {
         let email = e.target.value
         this.setState({email})
-
         localStorage.setItem('email',email)
     }
 
@@ -44,15 +41,13 @@ class LoginPage extends React.Component {
             }))
         } else {
             this.setState({ redirect:"/Dashboard",LoginStatus: true })
-
         }
     }
 
     render() {
         return (
             <BrowserRouter>
-            <div>
-                
+            <div>                
                 {this.state.LoginStatus== false && (
                     <div>
                      <h2>LOGIN</h2>
@@ -61,18 +56,11 @@ class LoginPage extends React.Component {
                     </div>
                     )}
                     {this.state.LoginStatus && (
-                     <div>
-                   
-                        
-                        <Redirect to={this.state.redirect} />
-
-                        <Route path="/Dashboard" component={Dashboard}  />
-                        </div>
-
-                    )}
-                        
-                
-          
+                     <div>                        
+                    <Redirect to={this.state.redirect} />
+                    <Route path="/Dashboard" component={Dashboard}  />
+                    </div>
+                    )}          
             </div>
            </BrowserRouter>
         )

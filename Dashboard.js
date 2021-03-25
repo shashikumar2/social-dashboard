@@ -31,24 +31,19 @@ class Dashboard extends React.Component {
                 
             })
             let id = object.id
-            //console.log(users)
-            //console.log(id)
-            
+                    
             this.setState({users})
             axios.get(`http://jsonplaceholder.typicode.com/posts?userId=${id}`)
             .then((response) => {
                 let posts = response.data
-                //console.log(posts)
                 this.setState({posts})
             })
             
             axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
             .then((response) => {
                 let userInfo = response.data
-                //console.log(userInfo)
                 let company = userInfo.company.name
                 let catchPhrase = userInfo.company.catchPhrase
-                //console.log(userInfo.company.catchPhrase)
                 this.setState({userInfo, company, catchPhrase})
                 
             })
@@ -69,12 +64,9 @@ class Dashboard extends React.Component {
                 <div>
                 <p>SwitchDash</p><button onClick={this.handleLogout}>Logout </button><br/>
                 
-                <h3>NAME: {this.state.userInfo.name} </h3> <br/>
-                
+                <h3>NAME: {this.state.userInfo.name} </h3> <br/>                
                 <p>email: {this.state.userInfo.email} </p>
-                <p>phone: {this.state.userInfo.phone} </p>
-                
-                
+                <p>phone: {this.state.userInfo.phone} </p>                
                 <p>Company: {this.state.company} </p> 
                 <p>CatchPhrase: {this.state.catchPhrase} </p><br/>
                 <h4>All posts of {this.state.userInfo.name}: </h4>
